@@ -29,7 +29,7 @@ pipeline {
                     success{
                     echo "Security Scan succesful"
                     emailext to: "kingrodeski@gmail.com",
-                    subject: "Security Sacn Successfull",
+                    subject: "Security Scan Successful",
                     body: "Please find the attached log file",
                     attachLog: true
                 }
@@ -58,7 +58,7 @@ pipeline {
     post {
                     success{
                     emailext to: "kingrodeski@gmail.com",
-                    subject: "Integration Successful",
+                    subject: "Integration Test Successful",
                     body: "Please find the attached log file",
                     attachLog: true
                 }
