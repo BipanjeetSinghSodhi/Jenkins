@@ -45,12 +45,18 @@ pipeline {
         }
     }
     post {
-        always {
-            echo 'Sending email notification...'
-            emailext body: "The build status is ${currentBuild.result}\n\nPlease find the build logs attached.", 
-                     subject: "Jenkins build ${currentBuild.result}: ${env.JOB_NAME} (${env.BUILD_NUMBER})", 
-                     attachmentsPattern: 'build.log', 
-                     to: 'kingrodeski@gmail.com'
-        }
+            post{
+                success{
+                    emailext to: "kingrodeski@gmail.com",
+                    subject: "Integration Successful",
+                    body: "Please find the attached log file",
+                    attachLog: true
+                }
+                failure{
+                    emailext to: "kingrodeski@gmail.com",
+                    subject: "Integration Test Failed",
+                    body: "Please find the attached log file",
+                    attachLog: true
+                }
     }
 }
