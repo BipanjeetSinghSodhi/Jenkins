@@ -25,8 +25,8 @@ pipeline {
             
             }
         }
-                    post{
-                success{
+          post{
+                    success{
                     echo "Security Scan succesful"
                     emailext to: "kingrodeski@gmail.com",
                     subject: "Security Sacn Successfull",
@@ -40,7 +40,7 @@ pipeline {
                     body: "Please find the attached log file",
                     attachLog: true
                 }
-                }
+           }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying the application to AWS EC2 instance for staging'
