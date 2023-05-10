@@ -4,27 +4,42 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code using Maven'
-                // Add your Maven build step here
+         
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests using JUnit and Selenium'
-                // Add your JUnit and Selenium test steps here
+           
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code using SonarQube'
-                // Add your SonarQube analysis step here
+            
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan using Checkmarx'
-                // Add your Checkmarx scan step here
+            
             }
         }
+                    post{
+                success{
+                    echo "Security Scan succesful"
+                    emailext to: "kingrodeski@gmail.com",
+                    subject: "Security Sacn Successfull",
+                    body: "Please find the attached log file",
+                    attachLog: true
+                }
+                failure{
+                    echo "Security Scan Failed"
+                    emailext to: "kingrodeski@gmail.com",
+                    subject: "Security Scan Failed",
+                    body: "Please find the attached log file",
+                    attachLog: true
+                }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying the application to AWS EC2 instance for staging'
@@ -34,7 +49,7 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging using Selenium'
-                // Add your Selenium test step for staging environment here
+               
             }
         }
     }
@@ -56,7 +71,7 @@ pipeline {
             stage('Deploy to Production') {
             steps {
                 echo 'Deploying the application to AWS EC2 instance for production'
-                // Add your AWS EC2 deployment step here
+ 
             }
         }
 }
