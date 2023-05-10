@@ -53,8 +53,8 @@ pipeline {
                 echo 'Running integration tests on staging using Selenium'
                
             }
-        }
-    }
+        
+    
     post {
                     success{
                     emailext to: "kingrodeski@gmail.com",
@@ -69,6 +69,7 @@ pipeline {
                     attachLog: true
                 }
 
+    }
     }
             stage('Deploy to Production') {
             steps {
