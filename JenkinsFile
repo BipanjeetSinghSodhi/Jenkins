@@ -37,12 +37,6 @@ pipeline {
                 // Add your Selenium test step for staging environment here
             }
         }
-        stage('Deploy to Production') {
-            steps {
-                echo 'Deploying the application to AWS EC2 instance for production'
-                // Add your AWS EC2 deployment step here
-            }
-        }
     }
     post {
                     success{
@@ -59,5 +53,11 @@ pipeline {
                 }
 
     }
+            stage('Deploy to Production') {
+            steps {
+                echo 'Deploying the application to AWS EC2 instance for production'
+                // Add your AWS EC2 deployment step here
+            }
+        }
 }
 
