@@ -45,8 +45,7 @@ pipeline {
         }
     }
     post {
-            post{
-                success{
+                    success{
                     emailext to: "kingrodeski@gmail.com",
                     subject: "Integration Successful",
                     body: "Please find the attached log file",
@@ -58,6 +57,7 @@ pipeline {
                     body: "Please find the attached log file",
                     attachLog: true
                 }
-           }
+
     }
+}
 }
