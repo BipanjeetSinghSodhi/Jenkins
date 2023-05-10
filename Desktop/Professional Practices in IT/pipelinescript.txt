@@ -1,60 +1,56 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                echo 'Building the code using Maven'
+             
             }
         }
-
         stage('Unit and Integration Tests') {
             steps {
-            
-          
-            }
-        }
-
-        stage('Code Analysis') {
-            steps {
-               
-            }
-        }
-
-        stage('Security Scan') {
-            steps {
-              
-            }
-        }
-
-        stage('Deploy to Staging') {
-            steps {
+                echo 'Running unit and integration tests using JUnit and Selenium'
                 
             }
         }
-
-        stage('Integration Tests on Staging') {
+        stage('Code Analysis') {
             steps {
+                echo 'Analyzing code using SonarQube'
+          
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Performing security scan using Checkmarx'
+            
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to staging usingthe application to AWS EC2 instance'
                
             }
         }
-
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Performing integration tests on staging using Selenium'
+              
+            }
+        }
         stage('Deploy to Production') {
             steps {
-            
+                echo 'Deploying the application to AWS EC2 instance for production...'
+             
             }
         }
     }
-
     post {
         always {
-            // Send an email notification with the build status and logs as attachment using the Email Extension Plugin for Jenkins.
-
-            
-            )
+            echo 'Sending email notification...'
+            emailext body: "The build status is ${currentBuild.result}\n\nPlease find the build logs attached.", 
+                     subject: "Jenkins build ${currentBuild.result}: ${env.JOB_NAME} (${env.BUILD_NUMBER})", 
+                     attachmentsPattern: 'build.log', 
+                     to: 'kingrodeski@gmail.com'
         }
-    }
-
- 
     }
 }
