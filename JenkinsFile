@@ -59,7 +59,7 @@ pipeline {
                     success{
                     emailext to: "kingrodeski@gmail.com",
                     subject: "Integration Test Successful",
-                    body: "Please find the attached log file",
+                    body: "Please find the attached log file..",
                     attachLog: true
                 }
                 failure{
